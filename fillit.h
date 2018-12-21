@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: epham <epham@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/06 16:48:00 by epham             #+#    #+#             */
-/*   Updated: 2018/12/06 17:34:54 by epham            ###   ########.fr       */
+/*   Created: 2018/12/12 21:29:44 by anradix           #+#    #+#             */
+/*   Updated: 2018/12/21 17:29:46 by epham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,18 @@
 # include <fcntl.h>
 # include <stdlib.h>
 
-typedef struct		list
+typedef struct	s_point
 {
-	size_t			x1;
-	size_t			x2;
-	size_t			x3;
-	size_t			x4;
-	size_t			y1;
-	size_t			y2;
-	size_t			y3;
-	size_t			y4;
-	size_t			status;
-	struct s_list	*next;
-}					tetri;
+	int			i;
+	int			j;
+}				t_point;
+
+int				ft_nb_pattern(char **tmp);
+int				ft_topleft(char **tab, int i, int stop, int choose);
+char			**ft_cpy(char **tmp, char **tab, int i, int j);
+int				ft_read_to_tmp(int fd, char *line, char **tmp);
+char			***ft_tmp_to_tab(char **tmp, char ***tab);
+int				ft_free(int error, char **tmp, char ***tab);
+int				ft_solver(char ***str);
 
 #endif

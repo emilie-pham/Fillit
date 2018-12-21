@@ -3,35 +3,44 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: anradix <marvin@42.fr>                     +#+  +:+       +#+         #
+#    By: epham <epham@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/04 13:50:09 by anradix           #+#    #+#              #
-#    Updated: 2018/12/04 14:01:16 by anradix          ###   ########.fr        #
+#    Updated: 2018/12/21 16:56:51 by epham            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = fillit
+NAME 	= fillit
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS 	= -Wall -Wextra -Werror
 
-SRC = 
+SRCS 	= main.c 		\
+ 		  check.c 		\
+ 		  fcts.c 		\
+ 		  solver.c
 
-OBJ = $(SRC:.c=.o)
+OBJS 	= $(SRCS:.c=.o)
 
-all: $(NAME)
+all: $(NAME)	
 
-$(NAME): $(OBJ)
-	@gcc $(FLAGS) -o $(NAME) $(OBJ)
+$(NAME): $(OBJS)
+	@make -C libft/
+	@gcc -g $(FLAGS) -o $(NAME) $(OBJS) -I libft/ -L libft/ -lft
 	@echo "fillit successfully compiled"
 
+%.o: %.c
+	@gcc $(FLAGS) -I libft/ -o $@ -c $^
+
 clean:
-		@rm -f $(OBJ)
-		@echo "make clean OK"
+		@make -C libft/ clean
+		@rm -f $(OBJS)
+		@echo "fillit clean OK"
 
 fclean: clean
+		@make -C libft/ fclean
 		@rm -f $(NAME)
-		@echo "make fclean OK"
+		@echo "fillit fclean OK"
 
 
 re: fclean all
-		@echo "make re OK"
+		@echo "fillit re OK"
