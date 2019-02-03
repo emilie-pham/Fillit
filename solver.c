@@ -6,7 +6,7 @@
 /*   By: epham <epham@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/14 20:39:35 by anradix           #+#    #+#             */
-/*   Updated: 2018/12/21 16:29:51 by epham            ###   ########.fr       */
+/*   Updated: 2018/12/28 19:18:01 by epham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,23 +89,15 @@ int		ft_solver(char ***tab)
 	int			mapsize;
 
 	c = 'A';
-	if (!(mapsize = ft_sqrt(ft_triple_tablen(tab) * 4)))
-		return (0);
+	mapsize = ft_sqrt(ft_triple_tablen(tab) * 4);
 	if (!(grid = ft_init_tab(mapsize, mapsize, '.')))
-	{
-		ft_tabdel(grid);
-		return (0);
-	}
+		return (ft_free(4, grid, tab));
 	while (ft_backtrack(grid, tab, c, mapsize) == 0)
 	{
 		mapsize++;
 		ft_tabdel(grid);
 		if (!(grid = ft_init_tab(mapsize, mapsize, '.')))
-		{
-			ft_triple_tabdel(tab);
-			ft_tabdel(grid);
-			return (0);
-		}
+			return (ft_free(4, grid, tab));
 	}
 	ft_printtabdl(grid);
 	ft_tabdel(grid);

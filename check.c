@@ -6,7 +6,7 @@
 /*   By: epham <epham@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/14 14:50:41 by anradix           #+#    #+#             */
-/*   Updated: 2018/12/21 17:31:23 by epham            ###   ########.fr       */
+/*   Updated: 2018/12/28 18:17:02 by epham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int		ft_grid_is_valid(char **tmp, int i, int stop)
 	while (i <= stop)
 	{
 		j = 0;
-		while (tmp[i][j])
+		while (tmp[i][j] != '\n')
 		{
 			if (tmp[i][j] && tmp[i][j] != '.' && tmp[i][j] != '#')
 				return (0);
@@ -59,13 +59,11 @@ int		ft_grid_is_valid(char **tmp, int i, int stop)
 	return (pattern != 4 || (adj != 6 && adj != 8)) ? 0 : 1;
 }
 
-int		ft_read_to_tmp(int fd, char *line, char **tmp)
+int		ft_read_to_tmp(int fd, char *line, char **tmp, int len)
 {
 	int		i;
-	int		len;
 
 	i = 0;
-	len = 0;
 	while (get_next_line(fd, &line) == 1 && len < 140)
 	{
 		tmp[len++] = ft_strdup(line);

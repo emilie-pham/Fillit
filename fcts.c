@@ -6,7 +6,7 @@
 /*   By: epham <epham@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/21 16:49:04 by epham             #+#    #+#             */
-/*   Updated: 2018/12/21 17:28:12 by epham            ###   ########.fr       */
+/*   Updated: 2018/12/28 18:27:10 by epham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		ft_nb_pattern(char **tmp)
 	len = 0;
 	while (tmp[i])
 	{
-		if (ft_strlen(tmp[i]) != 4)
+		if (ft_strlen(tmp[i]) != 5)
 			len++;
 		i++;
 	}
@@ -84,18 +84,6 @@ char	**ft_cpy(char **tmp, char **tab, int i, int j)
 	return (tab);
 }
 
-void	ft_tmpdel(char **tab)
-{
-	int i;
-
-	i = 0;
-	while (tab[i])
-	{
-		free(tab[i]);
-		i++;
-	}
-}
-
 int		ft_free(int error, char **tmp, char ***tab)
 {
 	if (error == 0)
@@ -107,6 +95,6 @@ int		ft_free(int error, char **tmp, char ***tab)
 		ft_triple_tabdel(tab);
 	if (error == 1 || error == 2)
 		ft_putendl("error");
-	ft_tmpdel(tmp);
+	ft_tabdel(tmp);
 	return (0);
 }
