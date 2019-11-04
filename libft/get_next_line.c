@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anradix <anradix@student.42.fr>            +#+  +:+       +#+        */
+/*   By: epham <epham@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 10:00:40 by anradix           #+#    #+#             */
-/*   Updated: 2018/12/08 16:39:40 by anradix          ###   ########.fr       */
+/*   Updated: 2018/12/28 18:12:35 by epham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int				get_next_line(const int fd, char **line)
 			return (-1);
 		free(tmp);
 	}
-	if (!(*line = ft_strsub(files[fd], 0, ft_word_len(files[fd], '\n'))))
+	if (!(*line = ft_strsub(files[fd], 0, ft_word_len(files[fd], '\n') + 1)))
 		return (-1);
 	if (ft_save_line(files[fd]) == NULL)
 		return (0);
